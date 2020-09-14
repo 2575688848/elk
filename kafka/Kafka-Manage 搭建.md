@@ -57,26 +57,28 @@ nohup bin/cmak -Dconfig.file=conf/application.conf -java-home /home/work/kafka/k
 
  
 
-### 2、相关操作：
+### 2、更详细的监控指标：
 
 添加cluster的时候，记得勾选上这几个选项，可以更详细的监控kafka数据。
 
 ![image-20200827194607089](.images/image-20200827194607089.png)
 
-**Enable JMX Polling**
-是否开启 JMX 轮训，该部分直接影响部分 kafka broker 和 topic 监控指标指标的获取（生效的前提是 kafka 启动时开启了 JMX_PORT。主要影响如下指标的查看：
+#### 上图勾选项解释：
+
+**<font color=green>Enable JMX Polling</font>**
+是否开启 JMX 轮训，该部分直接影响 kafka broker 和 topic 监控指标的获取（生效的前提是 kafka 启动时开启了 JMX_PORT。主要影响如下指标的查看：
 
 broker/topic 的combined metrics 综合指标
 
 ![image-20200827194700389](.images/image-20200827194700389.png)
 
-**Poll consumer information**
+**<font color=green>Poll consumer information</font>**
 
-是否开启获取消费信息，直接影响能够在消费者页面和 topic 页面查看消费信息
+是否开启获取消费信息，如果勾选上的话能够在消费者页面和 topic 页面查看消费信息
 
  ![image-20200827194711471](.images/image-20200827194711471.png)
 
-**Enable Active OffsetCache**
+**<font color=green>Enable Active OffsetCache</font>**
 是否开启 offset 缓存，决定 kafka-manager 是否缓存住 topic 的相关偏移量。
 
 
@@ -86,3 +88,13 @@ broker/topic 的combined metrics 综合指标
 在 kafka-run-class.sh 文件里 增加这一行启动参数：JMX_PORT=9988
 
 监听 9988 端口，获取 kafka 运行时状态信息
+
+修改完启动脚本后，需要重新启动 kafka
+
+
+
+### 提示：
+
+使用 JMX_PORT=9988 启动后，会导致 kafka 的命令行无法使用，比如创建 topic，查看 topic 相关信息等命令。因为连接端口 9988 被
+
+kafka - manage 占用了，这些操作都需要你在 kafka - manage 上进行。
