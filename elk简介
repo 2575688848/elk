@@ -8,7 +8,7 @@ Logstash 是服务器端数据处理管道，能够同时从多个来源采集�
 
 Kibana 则可以让用户在 Elasticsearch 中使用图形和图表对数据进行可视化。
 
-![image-20200827164841860](.images/image-20200827164841860.png)
+![image-20200827164841860](.images/image-20200827164841861.png)
 
 
 
@@ -18,11 +18,11 @@ Kibana 则可以让用户在 Elasticsearch 中使用图形和图表对数据进�
 
 收集日志：使用 Flume NG (下文简称 flume) 监控各个服务的日志文件，将日志数据传输到 kafka，再通过 elk 组件里的 logstash 解析从 kafka 得到的日志数据，最后将规范化的日志数据写入 elasticsearch。
 
-
+![image-20200827164953348](.images/image-20200827164953341.png)
 
 Flume ： 是一个分布式、可靠、高可用的海量日志聚合系统，支持在系统中定制各类数据发送方，用于收集数据；同时，Flume NG 提供对数据进行简单处理，并写到各种数据接收方。
 
-![image-20200827164953348](.images/image-20200827164953348.png)
+
 
 Kafka： 是由 `Linkedin` 公司开发的，它是一个分布式的，支持多分区、多副本，基于 Zookeeper 的分布式消息流平台，它同时也是一款开源的基于发布订阅模式的消息引擎系统，由 Scala 和 Java 编写。
 
